@@ -7,218 +7,202 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --bg: #0a0c10;
-  --surface: #111318;
-  --surface2: #161b24;
-  --border: #1e2530;
-  --border2: #252d3a;
-  --text: #e8eaf0;
-  --text2: #8b95a8;
-  --text3: #4a5568;
-  --accent: #3b82f6;
-  --accent2: #60a5fa;
-  --green: #10b981;
-  --yellow: #f59e0b;
-  --red: #ef4444;
-  --purple: #8b5cf6;
-  --a1: #3b82f6; --a2: #8b5cf6; --a3: #10b981; --a4: #f59e0b; --a5: #ef4444;
+  --bg:#0a0c10; --surface:#111318; --surface2:#161b24;
+  --border:#1e2530; --border2:#252d3a;
+  --text:#e8eaf0; --text2:#8b95a8; --text3:#4a5568;
+  --accent:#3b82f6; --accent2:#60a5fa;
+  --green:#10b981; --yellow:#f59e0b; --red:#ef4444; --purple:#8b5cf6;
+  --a1:#3b82f6; --a2:#8b5cf6; --a3:#10b981; --a4:#f59e0b; --a5:#ef4444;
 }
-
-body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.6; min-height: 100vh; }
-
-.layout { display: flex; height: 100vh; }
+body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; font-size:14px; line-height:1.6; min-height:100vh; }
+.layout { display:flex; height:100vh; }
 
 /* SIDEBAR */
-.sidebar { width: 260px; min-width: 260px; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
-
-.sidebar-header { padding: 22px 18px 16px; border-bottom: 1px solid var(--border); }
-
-.logo { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
-.logo-icon { width: 30px; height: 30px; background: linear-gradient(135deg, var(--accent), var(--purple)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
-.logo-text { font-family: 'Noto Serif SC', serif; font-size: 15px; font-weight: 700; background: linear-gradient(135deg, var(--accent2), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.logo-sub { font-size: 10px; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-left: 40px; }
+.sidebar { width:268px; min-width:268px; background:var(--surface); border-right:1px solid var(--border); display:flex; flex-direction:column; overflow:hidden; }
+.sidebar-header { padding:22px 18px 16px; border-bottom:1px solid var(--border); }
+.logo { display:flex; align-items:center; gap:10px; margin-bottom:4px; }
+.logo-icon { width:30px; height:30px; background:linear-gradient(135deg,var(--accent),var(--purple)); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:13px; }
+.logo-text { font-family:'Noto Serif SC',serif; font-size:15px; font-weight:700; background:linear-gradient(135deg,var(--accent2),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.logo-sub { font-size:10px; color:var(--text3); letter-spacing:0.1em; text-transform:uppercase; margin-left:40px; }
 
 /* CONFIG */
-.config-section { padding: 14px 16px; border-bottom: 1px solid var(--border); }
-.config-label { font-size: 10px; font-weight: 600; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-.config-row { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
-.config-row:last-child { margin-bottom: 0; }
+.config-section { padding:14px 16px; border-bottom:1px solid var(--border); }
+.config-label { font-size:10px; font-weight:600; color:var(--text3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px; }
+.config-row { display:flex; align-items:center; gap:6px; margin-bottom:8px; }
+.config-row:last-child { margin-bottom:0; }
+select, input[type="password"] { flex:1; height:32px; padding:0 8px; background:var(--surface2); border:1px solid var(--border2); border-radius:7px; color:var(--text); font-family:inherit; font-size:12px; outline:none; transition:border-color .15s; }
+select:focus, input[type="password"]:focus { border-color:var(--accent); }
+input[type="password"] { font-family:'JetBrains Mono',monospace; font-size:11px; }
+.status-row { display:flex; align-items:center; gap:6px; margin-top:6px; }
+.dot { width:6px; height:6px; border-radius:50%; background:var(--border2); transition:background .3s; flex-shrink:0; }
+.dot.ok { background:var(--green); }
+.dot.err { background:var(--red); }
+.status-text { font-size:11px; color:var(--text3); flex:1; }
+.status-text a { color:var(--accent2); text-decoration:none; }
 
-select, input[type="password"] { flex: 1; height: 32px; padding: 0 8px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 7px; color: var(--text); font-family: inherit; font-size: 12px; outline: none; transition: border-color 0.15s; }
-select:focus, input[type="password"]:focus { border-color: var(--accent); }
-input[type="password"] { font-family: 'JetBrains Mono', monospace; font-size: 11px; }
-
-.status-row { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
-.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border2); transition: background 0.3s; flex-shrink: 0; }
-.dot.ok { background: var(--green); }
-.dot.err { background: var(--red); }
-.status-text { font-size: 11px; color: var(--text3); flex: 1; }
-.status-text a { color: var(--accent2); text-decoration: none; }
+/* KEY HINT */
+.key-hint { font-size:10px; color:var(--text3); margin-top:5px; line-height:1.5; }
+.key-hint a { color:var(--accent2); text-decoration:none; }
 
 /* NAV */
-.nav { padding: 14px 12px; flex: 1; overflow-y: auto; }
-.nav-label { font-size: 10px; font-weight: 600; color: var(--text3); letter-spacing: 0.12em; text-transform: uppercase; padding: 0 6px; margin-bottom: 8px; }
-
-.nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 8px; border-radius: 8px; cursor: pointer; transition: all 0.15s; margin-bottom: 2px; position: relative; }
-.nav-item:hover { background: var(--surface2); }
-.nav-item.active { background: rgba(59,130,246,0.1); }
-.nav-item.active::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 3px; height: 60%; border-radius: 0 2px 2px 0; }
-
-.nav-item[data-step="1"].active::before { background: var(--a1); }
-.nav-item[data-step="2"].active::before { background: var(--a2); }
-.nav-item[data-step="3"].active::before { background: var(--a3); }
-.nav-item[data-step="4"].active::before { background: var(--a4); }
-.nav-item[data-step="5"].active::before { background: var(--a5); }
-
-.nav-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--border2); transition: all 0.2s; }
-.nav-item[data-step="1"].done .nav-dot, .nav-item[data-step="1"].active .nav-dot { background: var(--a1); border-color: var(--a1); }
-.nav-item[data-step="2"].done .nav-dot, .nav-item[data-step="2"].active .nav-dot { background: var(--a2); border-color: var(--a2); }
-.nav-item[data-step="3"].done .nav-dot, .nav-item[data-step="3"].active .nav-dot { background: var(--a3); border-color: var(--a3); }
-.nav-item[data-step="4"].done .nav-dot, .nav-item[data-step="4"].active .nav-dot { background: var(--a4); border-color: var(--a4); }
-.nav-item[data-step="5"].done .nav-dot, .nav-item[data-step="5"].active .nav-dot { background: var(--a5); border-color: var(--a5); }
-
-.nav-content { flex: 1; }
-.nav-num { font-size: 10px; color: var(--text3); font-family: 'JetBrains Mono', monospace; margin-bottom: 1px; }
-.nav-name { font-size: 12px; color: var(--text2); line-height: 1.3; }
-.nav-item.active .nav-name { color: var(--text); }
-.nav-check { font-size: 11px; color: var(--green); opacity: 0; }
-.nav-item.done .nav-check { opacity: 1; }
+.nav { padding:14px 12px; flex:1; overflow-y:auto; }
+.nav-label { font-size:10px; font-weight:600; color:var(--text3); letter-spacing:.12em; text-transform:uppercase; padding:0 6px; margin-bottom:8px; }
+.nav-item { display:flex; align-items:center; gap:10px; padding:9px 8px; border-radius:8px; cursor:pointer; transition:all .15s; margin-bottom:2px; position:relative; }
+.nav-item:hover { background:var(--surface2); }
+.nav-item.active { background:rgba(59,130,246,.1); }
+.nav-item.active::before { content:''; position:absolute; left:0; top:50%; transform:translateY(-50%); width:3px; height:60%; border-radius:0 2px 2px 0; }
+.nav-item[data-step="1"].active::before { background:var(--a1); }
+.nav-item[data-step="2"].active::before { background:var(--a2); }
+.nav-item[data-step="3"].active::before { background:var(--a3); }
+.nav-item[data-step="4"].active::before { background:var(--a4); }
+.nav-item[data-step="5"].active::before { background:var(--a5); }
+.nav-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; border:2px solid var(--border2); transition:all .2s; }
+.nav-item[data-step="1"].done .nav-dot,.nav-item[data-step="1"].active .nav-dot { background:var(--a1); border-color:var(--a1); }
+.nav-item[data-step="2"].done .nav-dot,.nav-item[data-step="2"].active .nav-dot { background:var(--a2); border-color:var(--a2); }
+.nav-item[data-step="3"].done .nav-dot,.nav-item[data-step="3"].active .nav-dot { background:var(--a3); border-color:var(--a3); }
+.nav-item[data-step="4"].done .nav-dot,.nav-item[data-step="4"].active .nav-dot { background:var(--a4); border-color:var(--a4); }
+.nav-item[data-step="5"].done .nav-dot,.nav-item[data-step="5"].active .nav-dot { background:var(--a5); border-color:var(--a5); }
+.nav-content { flex:1; }
+.nav-num { font-size:10px; color:var(--text3); font-family:'JetBrains Mono',monospace; margin-bottom:1px; }
+.nav-name { font-size:12px; color:var(--text2); line-height:1.3; }
+.nav-item.active .nav-name { color:var(--text); }
+.nav-check { font-size:11px; color:var(--green); opacity:0; }
+.nav-item.done .nav-check { opacity:1; }
 
 /* PIPELINE */
-.pipeline-bar { padding: 12px 16px; border-top: 1px solid var(--border); }
-.pipeline-label { font-size: 10px; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
-.pipeline-track { display: flex; gap: 3px; }
-.p-seg { flex: 1; height: 3px; border-radius: 2px; background: var(--border2); transition: background 0.4s; cursor: pointer; }
-.p-seg.done { background: var(--green); }
-.p-seg.active { background: var(--accent); }
+.pipeline-bar { padding:12px 16px; border-top:1px solid var(--border); }
+.pipeline-label { font-size:10px; color:var(--text3); letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px; }
+.pipeline-track { display:flex; gap:3px; }
+.p-seg { flex:1; height:3px; border-radius:2px; background:var(--border2); transition:background .4s; cursor:pointer; }
+.p-seg.done { background:var(--green); }
+.p-seg.active { background:var(--accent); }
 
 /* MAIN */
-.main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-
-.topbar { height: 56px; padding: 0 28px; border-bottom: 1px solid var(--border); background: var(--surface); display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
-.topbar-title { font-size: 15px; font-weight: 600; }
-.topbar-sub { font-size: 12px; color: var(--text3); }
-.topbar-space { flex: 1; }
-
-.content { flex: 1; overflow-y: auto; padding: 28px; scrollbar-width: thin; scrollbar-color: var(--border2) transparent; }
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+.main { flex:1; display:flex; flex-direction:column; overflow:hidden; }
+.topbar { height:56px; padding:0 28px; border-bottom:1px solid var(--border); background:var(--surface); display:flex; align-items:center; gap:14px; flex-shrink:0; }
+.topbar-title { font-size:15px; font-weight:600; }
+.topbar-sub { font-size:12px; color:var(--text3); }
+.topbar-space { flex:1; }
+.content { flex:1; overflow-y:auto; padding:28px; scrollbar-width:thin; scrollbar-color:var(--border2) transparent; }
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-thumb { background:var(--border2); border-radius:2px; }
 
 /* CARD */
-.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; position: relative; }
-
-.card-bar { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
-.bar-1 { background: linear-gradient(90deg, var(--a1), transparent); }
-.bar-2 { background: linear-gradient(90deg, var(--a2), transparent); }
-.bar-3 { background: linear-gradient(90deg, var(--a3), transparent); }
-.bar-4 { background: linear-gradient(90deg, var(--a4), transparent); }
-.bar-5 { background: linear-gradient(90deg, var(--a5), transparent); }
-
-.card-header { padding: 20px 22px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 14px; }
-
-.agent-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; margin-top: 2px; }
-.icon-1 { background: rgba(59,130,246,.12); }
-.icon-2 { background: rgba(139,92,246,.12); }
-.icon-3 { background: rgba(16,185,129,.12); }
-.icon-4 { background: rgba(245,158,11,.12); }
-.icon-5 { background: rgba(239,68,68,.12); }
-
-.agent-tag { font-size: 10px; font-family: 'JetBrains Mono', monospace; font-weight: 500; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 5px; }
-.tag-1 { background: rgba(59,130,246,.12); color: var(--a1); }
-.tag-2 { background: rgba(139,92,246,.12); color: var(--a2); }
-.tag-3 { background: rgba(16,185,129,.12); color: var(--a3); }
-.tag-4 { background: rgba(245,158,11,.12); color: var(--a4); }
-.tag-5 { background: rgba(239,68,68,.12); color: var(--a5); }
-
-.agent-title { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; }
-.agent-desc { font-size: 12px; color: var(--text2); line-height: 1.6; max-width: 560px; }
+.card { background:var(--surface); border:1px solid var(--border); border-radius:12px; overflow:hidden; position:relative; }
+.card-bar { position:absolute; top:0; left:0; right:0; height:3px; }
+.bar-1 { background:linear-gradient(90deg,var(--a1),transparent); }
+.bar-2 { background:linear-gradient(90deg,var(--a2),transparent); }
+.bar-3 { background:linear-gradient(90deg,var(--a3),transparent); }
+.bar-4 { background:linear-gradient(90deg,var(--a4),transparent); }
+.bar-5 { background:linear-gradient(90deg,var(--a5),transparent); }
+.card-header { padding:20px 22px 16px; border-bottom:1px solid var(--border); display:flex; align-items:flex-start; gap:14px; }
+.agent-icon { width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0; margin-top:2px; }
+.icon-1{background:rgba(59,130,246,.12);} .icon-2{background:rgba(139,92,246,.12);} .icon-3{background:rgba(16,185,129,.12);} .icon-4{background:rgba(245,158,11,.12);} .icon-5{background:rgba(239,68,68,.12);}
+.agent-tag { font-size:10px; font-family:'JetBrains Mono',monospace; font-weight:500; padding:2px 8px; border-radius:4px; display:inline-block; margin-bottom:5px; }
+.tag-1{background:rgba(59,130,246,.12);color:var(--a1);} .tag-2{background:rgba(139,92,246,.12);color:var(--a2);} .tag-3{background:rgba(16,185,129,.12);color:var(--a3);} .tag-4{background:rgba(245,158,11,.12);color:var(--a4);} .tag-5{background:rgba(239,68,68,.12);color:var(--a5);}
+.agent-title { font-size:18px; font-weight:600; letter-spacing:-.02em; margin-bottom:4px; }
+.agent-desc { font-size:12px; color:var(--text2); line-height:1.6; max-width:560px; }
 
 /* IO */
-.io-grid { display: grid; grid-template-columns: 1fr 28px 1fr; align-items: start; padding: 16px 22px; border-bottom: 1px solid var(--border); }
-.io-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
-.io-box-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 8px; }
-.io-items { list-style: none; }
-.io-items li { font-size: 12px; color: var(--text2); padding: 3px 0; display: flex; align-items: baseline; gap: 6px; }
-.io-items li::before { content: '·'; color: var(--text3); }
-.io-arrow { display: flex; align-items: center; justify-content: center; padding-top: 36px; color: var(--text3); font-size: 18px; }
+.io-grid { display:grid; grid-template-columns:1fr 28px 1fr; align-items:start; padding:16px 22px; border-bottom:1px solid var(--border); }
+.io-box { background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:12px 14px; }
+.io-box-label { font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--text3); margin-bottom:8px; }
+.io-items { list-style:none; }
+.io-items li { font-size:12px; color:var(--text2); padding:3px 0; display:flex; align-items:baseline; gap:6px; }
+.io-items li::before { content:'·'; color:var(--text3); }
+.io-arrow { display:flex; align-items:center; justify-content:center; padding-top:36px; color:var(--text3); font-size:18px; }
+
+/* KEY INSIGHT BOX */
+.insight-box { margin:0 22px 0; padding:10px 14px; background:rgba(59,130,246,.06); border:1px solid rgba(59,130,246,.18); border-radius:8px; font-size:12px; color:var(--text2); line-height:1.6; border-top:none; border-radius:0 0 8px 8px; }
+.insight-box strong { color:var(--accent2); }
 
 /* WORKSPACE */
-.workspace { padding: 20px 22px; }
-.ws-label { font-size: 11px; font-weight: 500; color: var(--text2); margin-bottom: 7px; display: flex; align-items: center; justify-content: space-between; }
-
-textarea { width: 100%; background: var(--surface2); border: 1px solid var(--border2); border-radius: 8px; padding: 13px 14px; color: var(--text); font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.7; resize: vertical; min-height: 130px; outline: none; transition: border-color 0.15s; margin-bottom: 12px; }
-textarea:focus { border-color: var(--accent); }
-textarea::placeholder { color: var(--text3); }
+.workspace { padding:20px 22px; }
+.ws-label { font-size:11px; font-weight:500; color:var(--text2); margin-bottom:7px; display:flex; align-items:center; justify-content:space-between; }
+textarea { width:100%; background:var(--surface2); border:1px solid var(--border2); border-radius:8px; padding:13px 14px; color:var(--text); font-family:'Inter',sans-serif; font-size:13px; line-height:1.7; resize:vertical; min-height:130px; outline:none; transition:border-color .15s; margin-bottom:12px; }
+textarea:focus { border-color:var(--accent); }
+textarea::placeholder { color:var(--text3); }
 
 /* BUTTONS */
-.actions { display: flex; align-items: center; gap: 8px; }
-button { height: 34px; padding: 0 16px; border-radius: 7px; font-family: inherit; font-size: 12px; font-weight: 500; cursor: pointer; border: none; transition: all 0.15s; display: flex; align-items: center; gap: 5px; }
-.btn-run { background: var(--accent); color: white; }
-.btn-run:hover { background: #2563eb; }
-.btn-run:disabled { background: var(--border2); color: var(--text3); cursor: not-allowed; }
-.btn-ghost { background: transparent; color: var(--text2); border: 1px solid var(--border2); }
-.btn-ghost:hover { background: var(--surface2); color: var(--text); }
-.btn-next { margin-left: auto; background: rgba(59,130,246,0.1); color: var(--accent2); border: 1px solid rgba(59,130,246,0.25); display: none; }
-.btn-next:hover { background: rgba(59,130,246,0.18); }
-.btn-next.visible { display: flex; }
-.btn-verify { height: 32px; padding: 0 10px; font-size: 11px; background: transparent; color: var(--text2); border: 1px solid var(--border2); border-radius: 6px; }
-.btn-verify:hover { background: var(--surface2); }
+.actions { display:flex; align-items:center; gap:8px; }
+button { height:34px; padding:0 16px; border-radius:7px; font-family:inherit; font-size:12px; font-weight:500; cursor:pointer; border:none; transition:all .15s; display:flex; align-items:center; gap:5px; }
+.btn-run { background:var(--accent); color:white; }
+.btn-run:hover { background:#2563eb; }
+.btn-run:disabled { background:var(--border2); color:var(--text3); cursor:not-allowed; }
+.btn-ghost { background:transparent; color:var(--text2); border:1px solid var(--border2); }
+.btn-ghost:hover { background:var(--surface2); color:var(--text); }
+.btn-next { margin-left:auto; background:rgba(59,130,246,.1); color:var(--accent2); border:1px solid rgba(59,130,246,.25); display:none; }
+.btn-next:hover { background:rgba(59,130,246,.18); }
+.btn-next.visible { display:flex; }
+.btn-verify { height:32px; padding:0 10px; font-size:11px; background:transparent; color:var(--text2); border:1px solid var(--border2); border-radius:6px; }
+.btn-verify:hover { background:var(--surface2); }
 
 /* LOADING */
-.loading-row { display: none; align-items: center; gap: 9px; padding: 10px 0; color: var(--text3); font-size: 12px; }
-.loading-row.visible { display: flex; }
-.spinner { width: 14px; height: 14px; border: 2px solid var(--border2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.75s linear infinite; flex-shrink: 0; }
-@keyframes spin { to { transform: rotate(360deg); } }
+.loading-row { display:none; align-items:center; gap:9px; padding:10px 0; color:var(--text3); font-size:12px; }
+.loading-row.visible { display:flex; }
+.spinner { width:14px; height:14px; border:2px solid var(--border2); border-top-color:var(--accent); border-radius:50%; animation:spin .75s linear infinite; flex-shrink:0; }
+@keyframes spin { to{transform:rotate(360deg);} }
 
 /* OUTPUT */
-.output-wrap { display: none; margin-top: 14px; border-top: 1px solid var(--border); padding-top: 14px; }
-.output-wrap.visible { display: block; }
-.output-header { display: flex; align-items: center; gap: 7px; margin-bottom: 10px; }
-.output-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
-.output-label-text { font-size: 11px; font-weight: 500; color: var(--text2); flex: 1; }
-.output-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; font-size: 13px; line-height: 1.8; color: var(--text2); max-height: 460px; overflow-y: auto; }
-
-.output-box h2 { font-size: 13px; font-weight: 700; color: var(--text); margin: 14px 0 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
-.output-box h2:first-child { margin-top: 0; }
-.output-box h3 { font-size: 12px; font-weight: 600; color: var(--accent2); margin: 10px 0 5px; }
-.output-box ul { list-style: none; padding: 0; margin: 4px 0; }
-.output-box li { padding: 3px 0 3px 12px; position: relative; color: var(--text2); }
-.output-box li::before { content: '·'; position: absolute; left: 3px; color: var(--text3); }
-.output-box strong { color: var(--text); font-weight: 600; }
-.output-box table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 12px; }
-.output-box td, .output-box th { padding: 6px 10px; border: 1px solid var(--border); text-align: left; }
-.output-box th { background: var(--surface); color: var(--text2); font-weight: 600; }
-.output-box hr { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
-.output-box code { font-family: 'JetBrains Mono', monospace; font-size: 11px; background: var(--border2); padding: 1px 5px; border-radius: 3px; color: var(--accent2); }
+.output-wrap { display:none; margin-top:14px; border-top:1px solid var(--border); padding-top:14px; }
+.output-wrap.visible { display:block; }
+.output-header { display:flex; align-items:center; gap:7px; margin-bottom:10px; }
+.output-dot { width:6px; height:6px; border-radius:50%; background:var(--green); }
+.output-label-text { font-size:11px; font-weight:500; color:var(--text2); flex:1; }
+.output-box { background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px 16px; font-size:13px; line-height:1.8; color:var(--text2); max-height:500px; overflow-y:auto; }
+.output-box h2 { font-size:13px; font-weight:700; color:var(--text); margin:14px 0 8px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+.output-box h2:first-child { margin-top:0; }
+.output-box h3 { font-size:12px; font-weight:600; color:var(--accent2); margin:10px 0 5px; }
+.output-box ul { list-style:none; padding:0; margin:4px 0; }
+.output-box li { padding:3px 0 3px 12px; position:relative; color:var(--text2); }
+.output-box li::before { content:'·'; position:absolute; left:3px; color:var(--text3); }
+.output-box strong { color:var(--text); font-weight:600; }
+.output-box table { width:100%; border-collapse:collapse; margin:8px 0; font-size:12px; }
+.output-box td,.output-box th { padding:6px 10px; border:1px solid var(--border); text-align:left; }
+.output-box th { background:var(--surface); color:var(--text2); font-weight:600; }
+.output-box hr { border:none; border-top:1px solid var(--border); margin:12px 0; }
+.output-box code { font-family:'JetBrains Mono',monospace; font-size:11px; background:var(--border2); padding:1px 5px; border-radius:3px; color:var(--accent2); }
+.output-box blockquote { border-left:3px solid var(--accent); padding-left:10px; color:var(--text3); margin:8px 0; font-style:italic; }
 
 /* TOAST */
-.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(8px); background: var(--surface2); border: 1px solid var(--border2); color: var(--text); padding: 8px 18px; border-radius: 8px; font-size: 13px; opacity: 0; transition: all 0.22s; pointer-events: none; z-index: 999; white-space: nowrap; }
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(8px); background:var(--surface2); border:1px solid var(--border2); color:var(--text); padding:8px 18px; border-radius:8px; font-size:13px; opacity:0; transition:all .22s; pointer-events:none; z-index:999; white-space:nowrap; }
+.toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 </style>
 </head>
 <body>
 <div class="layout">
 
+  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-header">
       <div class="logo">
         <div class="logo-icon">⚡</div>
-        <span class="logo-text">Agentic PRD</span>
+        <span class="logo-text">PRD 工作台</span>
       </div>
-      <div class="logo-sub">智谱 GLM 驱动</div>
+      <div class="logo-sub">Agentic · v3.0</div>
     </div>
 
     <div class="config-section">
       <div class="config-label">模型配置</div>
       <div class="config-row">
-        <select id="model">
-          <option value="glm-4-flash">GLM-4-Flash（免费）</option>
-          <option value="glm-4-air">GLM-4-Air</option>
-          <option value="glm-4">GLM-4</option>
-          <option value="glm-4-long">GLM-4-Long</option>
+        <select id="provider" onchange="onProviderChange()">
+          <optgroup label="🇨🇳 国内模型">
+            <option value="glm">智谱 GLM</option>
+            <option value="qwen">阿里千问</option>
+            <option value="doubao">字节豆包</option>
+            <option value="kimi">Kimi（月之暗面）</option>
+            <option value="minimax">MiniMax</option>
+          </optgroup>
+          <optgroup label="🌍 国际模型">
+            <option value="openai">OpenAI / GPT</option>
+            <option value="gemini">Google Gemini</option>
+            <option value="claude">Anthropic Claude</option>
+          </optgroup>
         </select>
+      </div>
+      <div class="config-row">
+        <select id="model-select"></select>
       </div>
       <div class="config-row">
         <input type="password" id="apikey" placeholder="粘贴 API Key…" oninput="saveKey()" />
@@ -226,35 +210,36 @@ button { height: 34px; padding: 0 16px; border-radius: 7px; font-family: inherit
       </div>
       <div class="status-row">
         <div class="dot" id="conn-dot"></div>
-        <span class="status-text" id="conn-text">未配置 · <a href="https://open.bigmodel.cn" target="_blank">免费申请 →</a></span>
+        <span class="status-text" id="conn-text">未配置</span>
       </div>
+      <div class="key-hint" id="key-hint"></div>
     </div>
 
     <nav class="nav">
       <div class="nav-label">五步流水线</div>
       <div class="nav-item active" data-step="1" onclick="switchStep(1)">
         <div class="nav-dot"></div>
-        <div class="nav-content"><div class="nav-num">AGENT 01</div><div class="nav-name">Recorder 事实整理</div></div>
+        <div class="nav-content"><div class="nav-num">STEP 01</div><div class="nav-name">Recorder 事实整理</div></div>
         <span class="nav-check">✓</span>
       </div>
       <div class="nav-item" data-step="2" onclick="switchStep(2)">
         <div class="nav-dot"></div>
-        <div class="nav-content"><div class="nav-num">AGENT 02</div><div class="nav-name">Translator 意图翻译</div></div>
+        <div class="nav-content"><div class="nav-num">STEP 02</div><div class="nav-name">Translator 意图翻译</div></div>
         <span class="nav-check">✓</span>
       </div>
       <div class="nav-item" data-step="3" onclick="switchStep(3)">
         <div class="nav-dot"></div>
-        <div class="nav-content"><div class="nav-num">AGENT 03</div><div class="nav-name">Writer PRD 写手</div></div>
+        <div class="nav-content"><div class="nav-num">STEP 03</div><div class="nav-name">Writer PRD 写手</div></div>
         <span class="nav-check">✓</span>
       </div>
       <div class="nav-item" data-step="4" onclick="switchStep(4)">
         <div class="nav-dot"></div>
-        <div class="nav-content"><div class="nav-num">AGENT 04</div><div class="nav-name">Reviewer 评审挑战</div></div>
+        <div class="nav-content"><div class="nav-num">STEP 04</div><div class="nav-name">Reviewer 评审挑战</div></div>
         <span class="nav-check">✓</span>
       </div>
       <div class="nav-item" data-step="5" onclick="switchStep(5)">
         <div class="nav-dot"></div>
-        <div class="nav-content"><div class="nav-num">AGENT 05</div><div class="nav-name">Generator 工单拆解</div></div>
+        <div class="nav-content"><div class="nav-num">STEP 05</div><div class="nav-name">Generator 工单拆解</div></div>
         <span class="nav-check">✓</span>
       </div>
     </nav>
@@ -271,12 +256,13 @@ button { height: 34px; padding: 0 16px; border-radius: 7px; font-family: inherit
     </div>
   </aside>
 
+  <!-- MAIN -->
   <div class="main">
     <div class="topbar">
-      <span class="topbar-title" id="topbar-title">Agent 01 — Recorder</span>
-      <span class="topbar-sub" id="topbar-sub">会议转录与事实整理员</span>
+      <span class="topbar-title" id="topbar-title">Step 01 — Recorder</span>
+      <span class="topbar-sub" id="topbar-sub">事实整理员</span>
       <div class="topbar-space"></div>
-      <button class="btn-ghost" style="font-size:12px" onclick="runAll()" id="run-all-btn">▶ 一键运行全流程</button>
+      <button class="btn-ghost" style="font-size:12px" id="run-all-btn" onclick="runAll()">▶ 一键运行全流程</button>
     </div>
     <div class="content" id="content"></div>
   </div>
@@ -285,53 +271,114 @@ button { height: 34px; padding: 0 16px; border-radius: 7px; font-family: inherit
 <div class="toast" id="toast"></div>
 
 <script>
-const AGENTS = [
-  { id:1, icon:'📼', iconClass:'icon-1', tagClass:'tag-1', barClass:'bar-1',
-    tag:'AGENT 01 · Recorder', title:'事实整理员',
-    desc:'只做一件事：把"发生了什么"说清楚。把散乱的会议记录整理成结构化事实，不加任何推断。',
-    inputLabel:'粘贴会议记录 / 聊天记录 / 纪要',
-    placeholder:'[09:05] 张三：我们先做用户分层，把沉默用户挑出来激活\n[09:07] 李四：数据怎么来？目前埋点没全跑通\n[09:09] 王五：月底前必须有初版，董事会要看\n[09:12] 张三：先用离线T+1数据，实时的Q2再说',
-    inputItems:['会议录音文字','群聊 / IM 记录','飞书 / Notion 纪要'],
-    outputItems:['事实清单（谁说了什么）','待确认点','决策与责任人表格'],
-    nextLabel:'继续 → 意图翻译',
-    system:`你是 Recorder（事实整理员）。只做一件事：把"发生了什么"说清楚。
+// ── MODEL REGISTRY ──
+const PROVIDERS = {
+  glm: {
+    name: '智谱 GLM',
+    url: 'https://open.bigmodel.cn/api/paas/v4/chat/completions',
+    format: 'openai',
+    models: ['glm-4-flash','glm-4-air','glm-4','glm-4-long'],
+    keyLink: 'https://open.bigmodel.cn',
+    keyHint: '免费注册，GLM-4-Flash 完全免费'
+  },
+  qwen: {
+    name: '阿里千问',
+    url: 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions',
+    format: 'openai',
+    models: ['qwen-plus','qwen-max','qwen-turbo','qwen-long'],
+    keyLink: 'https://dashscope.console.aliyun.com',
+    keyHint: '需开通 DashScope 服务，注册后可免费试用'
+  },
+  doubao: {
+    name: '字节豆包',
+    url: 'https://ark.cn-beijing.volces.com/api/v3/chat/completions',
+    format: 'openai',
+    models: ['ep-xxxx（填入你的推理接入点 ID）'],
+    keyLink: 'https://console.volcengine.com/ark',
+    keyHint: '需在火山引擎创建推理接入点，填入接入点 ID 作为模型名'
+  },
+  kimi: {
+    name: 'Kimi 月之暗面',
+    url: 'https://api.moonshot.cn/v1/chat/completions',
+    format: 'openai',
+    models: ['moonshot-v1-8k','moonshot-v1-32k','moonshot-v1-128k'],
+    keyLink: 'https://platform.moonshot.cn',
+    keyHint: '注册后可免费试用，长上下文能力强'
+  },
+  minimax: {
+    name: 'MiniMax',
+    url: 'https://api.minimax.chat/v1/text/chatcompletion_v2',
+    format: 'openai',
+    models: ['abab6.5s-chat','abab6.5g-chat','abab5.5-chat'],
+    keyLink: 'https://api.minimax.chat',
+    keyHint: '注册后可申请 API 权限'
+  },
+  openai: {
+    name: 'OpenAI',
+    url: 'https://api.openai.com/v1/chat/completions',
+    format: 'openai',
+    models: ['gpt-4o','gpt-4o-mini','gpt-4-turbo','gpt-3.5-turbo'],
+    keyLink: 'https://platform.openai.com/api-keys',
+    keyHint: '国内访问需要代理，或使用中转 API'
+  },
+  gemini: {
+    name: 'Google Gemini',
+    url: '__gemini__',
+    format: 'gemini',
+    models: ['gemini-1.5-pro','gemini-1.5-flash','gemini-2.0-flash-exp'],
+    keyLink: 'https://aistudio.google.com/app/apikey',
+    keyHint: '需要 Google 账号，国内访问需代理'
+  },
+  claude: {
+    name: 'Claude',
+    url: 'https://api.anthropic.com/v1/messages',
+    format: 'claude',
+    models: ['claude-opus-4-5','claude-sonnet-4-5','claude-haiku-4-5'],
+    keyLink: 'https://console.anthropic.com',
+    keyHint: '国内访问需要代理，或使用中转 API'
+  }
+};
 
-严格按以下格式输出 Markdown，不要加自己的推断：
+// ── SYSTEM PROMPT (v3.0) ──
+const SYSTEM_PROMPTS = {
+  1: `你是 Recorder（事实整理员）。只做一件事：把"发生了什么"说清楚。
+
+核心原则：只整理事实，不加推断，每条必须有出处（姓名/角色）。
+
+严格按以下格式输出 Markdown：
 
 ## ✅ 事实清单
-- [姓名]：[具体说了什么 / 达成了什么]（每条必须有出处，按时间顺序）
+- [姓名/角色]：[具体说了什么 / 达成了什么共识]
+（按时间顺序，每条必须有出处）
 
 ## ❓ 待确认点
-- [口头猜测或证据不足、需要进一步确认的事项]
+- [口头猜测、证据不足、需进一步确认的事项]
+- ⚠️ 特别标注：哪些表述是"功能需求"而非"业务问题"视角（如"竞品有了我们也做"、"加个功能"、"体验不好"）
 
 ## 👤 决策与责任人
 | 决策事项 | 责任人 | 截止时间 |
 |---|---|---|
-| ... | ... | ... |
 
-保持简洁，用 bullet，不要写多余的解释。`
-  },
-  { id:2, icon:'🔍', iconClass:'icon-2', tagClass:'tag-2', barClass:'bar-2',
-    tag:'AGENT 02 · Translator', title:'意图翻译官',
-    desc:'把业务话术翻译成产品语言。目标不是功能，目标是可验证的业务结果，必须有具体数字和截止时间。',
-    inputLabel:'粘贴事实清单（或直接描述业务背景）',
-    placeholder:'粘贴上一步的输出，或直接描述业务背景、痛点、期望结果……',
-    inputItems:['Agent01 事实清单','或直接描述业务背景'],
-    outputItems:['可验证目标（OKR格式）','约束条件（时间/资源/数据）','关键假设','优先级 P0/P1/P2'],
-    nextLabel:'继续 → PRD 写手',
-    system:`你是 Intent Translator（意图翻译官）。把业务话术翻译成产品语言。
+保持简洁，不要写多余的解释。`,
 
-输出前先用这五个问题审视输入（答案内化到输出中，不要逐条列出问题）：
-- USER：用户是谁？（精确画像，不是"所有用户"）
-- PROBLEM：问题是什么？（数据化的差距）
-- WHY NOW：为什么现在必须做？
-- COST：不做的代价？
-- SUCCESS：成功是什么样的？（可测量+有时间范围）
+  2: `你是 Intent Translator（意图翻译官）。把业务话术翻译成产品语言。
 
-如果某个问题信息不足，在"关键假设"里标出来。严格按以下格式输出：
+执行前先做"第一性检验"（内化到输出中，不需要逐条列出）：
+- 背景是否从业务目标倒推的"业务问题"？还是"竞品有了/体验不好/想加功能"的功能视角？
+- 这个问题不解决，会产生什么业务后果？能量化吗？
+- 只看背景能猜到方案长什么样吗？（测试问题-方案关联度）
+- USER：用户是谁？ PROBLEM：数据化的差距？ WHY NOW：为什么现在？ COST：不做的代价？ SUCCESS：可测量的成功？
+
+如果背景是"功能视角"，必须明确指出并重新定义业务问题。
+
+严格按以下格式输出：
+
+## ⚠️ 背景诊断（如有问题才输出）
+[如果原始描述是功能视角而非业务问题，在此指出并重新定义]
 
 ## 🎯 可验证目标
-[可量化+有截止时间的业务结果，OKR格式]
+将 [指标] 从 [现状值] 提升至 [目标值]，[时间节点] 验收
+（目标是可量化业务结果，不是功能描述；必须有具体数字）
 
 ## 🚧 约束条件
 - 时间约束：
@@ -340,115 +387,154 @@ const AGENTS = [
 - 合规约束：（如有）
 
 ## 💡 关键假设（需验证）
-- [假设] → 验证方式：[如何验证] → 负责人：[谁]
+- [假设内容] → 验证方式：[如何验证] → 负责人：[谁]
 
 ## 📊 优先级建议
 - P0（必做，阻塞上线）：
 - P1（应做，影响目标达成）：
 - P2（可延后）：
 
-拒绝"尽快""有所提升"等模糊表述，必须有具体数字。`
-  },
-  { id:3, icon:'📝', iconClass:'icon-3', tagClass:'tag-3', barClass:'bar-3',
-    tag:'AGENT 03 · Writer', title:'PRD 结构化写手',
-    desc:'输出结构完整的 PRD 初稿。重点是结构完整，不是文笔优美。每个模块至少3个实质条目，不能只写标题。',
-    inputLabel:'粘贴目标与约束（或 Agent02 的输出）',
-    placeholder:'粘贴上一步的翻译结果，或直接描述产品目标、约束条件……',
-    inputItems:['可验证目标','约束条件','优先级建议'],
-    outputItems:['背景与问题定义','目标与范围 In/Out','核心流程','方案说明','埋点与指标','风险与灰度'],
-    nextLabel:'继续 → 评审挑战',
-    system:`你是 PRD Writer（PRD结构化写手）。输出结构完整的 PRD 初稿。重点是结构完整，不是文笔。每个模块必须有实质内容，不能只写标题，每模块至少3个条目。
+拒绝"尽快""有所提升"等模糊表述，必须有具体数字。`,
+
+  3: `你是 PRD Writer（结构化写手）。输出结构完整、逻辑自洽的 PRD 初稿。
+
+核心原则：
+1. 每个模块至少3个实质条目，不能只写标题
+2. 必须同时回答双视角：用户视角（用户想做什么/真实动机）+ 平台视角（我们想让用户做什么/引导强度是否匹配价值）
+3. 场景穷举：不只是 happy path，必须覆盖异常和边界
+4. 指标必须和方案直接关联，有预期变化方向和归因逻辑
 
 严格按六个模块输出：
 
 ## 一、背景与问题定义
-- 业务背景：
-- 现状与痛点：（用数据描述）
-- 为什么现在做：
+- 业务背景：（从业务目标倒推的问题，不是"想加功能"）
+- 现状与痛点：（用数据描述，有具体量化缺口）
+- 为什么现在做：（时间窗口/竞争压力/业务节点）
+- 不做的代价：（量化表述）
 
 ## 二、目标与范围
 **目标**：[可量化目标 + 验收时间]
+**用户视角**：目标用户是 [精确画像]，他们在 [场景] 下需要 [真实动机/深层需求]
+**平台视角**：我们希望引导用户 [行为]，达成 [业务目标]；引导强度 [强/中/弱]，匹配用户获得的价值为 [描述]
 
 | 范围 | 内容 |
 |---|---|
 | ✅ In Scope | [本次做的] |
-| ❌ Out Scope | [明确不做的] |
+| ❌ Out Scope | [明确不做的，及原因] |
 
-## 三、核心流程（用户旅程）
-主流程：步骤1 → 步骤2 → 步骤3 → ...
-异常/边界：
-- 情况A：处理方式
-- 情况B：处理方式
+## 三、核心流程与场景穷举
+**主流程**：步骤1 → 步骤2 → 步骤3 → ...
+
+**场景穷举**（必须覆盖，不只是 happy path）：
+| 场景 | 用户状态 | 产品承接方式 | 是否走通 |
+|---|---|---|---|
+| 正常使用（主路径）| | | ✅ |
+| 首次使用/空状态 | | | |
+| 异常/错误状态 | | | |
+| 权限不足 | | | |
+| 网络异常 | | | |
+| 数据量极大/极小 | | | |
+| 用户中途退出 | | | |
 
 ## 四、方案说明
-- 关键交互规则：
-- 边界条件：（极端值、空状态、异常状态）
-- 状态说明：
+**用户侧**：
+- 核心交互规则：
+- 关键文案/引导：（体现平台意图，强度是否匹配用户价值）
+- 边界条件处理：
+
+**平台侧**：
+- 引导策略：
+- 引导强度说明：（为什么这个强度是合理的）
 
 ## 五、埋点与指标
-| 指标名称 | 定义口径 | 计算方式 | 更新频率 |
-|---|---|---|---|
+> 指标必须和方案强关联，能直接反映方案带来的变化。
+
+| 指标名称 | 定义口径 | 预期变化 | 预期幅度 | 归因逻辑 |
+|---|---|---|---|---|
+| | | ↑/↓ | | 做了X→Y变化→因为... |
+
+**验证路径**：
+- 是否需要 A/B 实验？（有用户行为假设 → 建议实验）
+- 实验设计：实验组 vs 对照组 / 流量比例 / 实验周期
+- 若不做实验：全量上线后如何判断成功或失败？
+- 回滚机制：
 
 ## 六、风险与灰度策略
 - 技术风险：
 - 业务风险：
+- 对存量用户/数据的影响：
+- 对其他模块的连带影响：
 - 灰度方案：
-- 回滚方案：`
-  },
-  { id:4, icon:'🎯', iconClass:'icon-4', tagClass:'tag-4', barClass:'bar-4',
-    tag:'AGENT 04 · Reviewer', title:'评审挑战模拟器',
-    desc:'扮演开发、测试、数据、合规四类角色挑战 PRD，提前暴露评审炸弹。每条问题指向具体章节。',
-    inputLabel:'粘贴 PRD 草稿',
-    placeholder:'粘贴上一步生成的 PRD 初稿，Reviewer 将从四个角色视角提出评审问题……',
-    inputItems:['PRD 初稿（Agent03 输出）'],
-    outputItems:['10-20条评审问题+风险等级','决策记录模板','争议清单','口径冻结建议'],
-    nextLabel:'继续 → 工单拆解',
-    system:`你是 Reviewer（评审挑战模拟器）。扮演四种角色挑战 PRD，提前暴露问题。每条问题必须指向 PRD 具体章节。
+- 回滚方案：
 
-输出 10-20 条问题（视PRD复杂度）：
+写完后自检：
+- [ ] 背景是业务问题，不是功能缺失
+- [ ] 逻辑链：做了X→导致Y→解决问题Z
+- [ ] 场景穷举覆盖主路径+异常+边界
+- [ ] 指标与方案直接关联，有预期变化方向
+- [ ] 平台引导强度 ≤ 用户从该行为中获得的价值感`,
+
+  4: `你是 Reviewer（评审挑战模拟器）。先做第一性判断，再进行多维度评审。每条问题必须指向 PRD 具体章节。
+
+## 🔑 第一性判断（先于维度评审）
+
+**背景诊断**：
+- 背景是从业务目标倒推的业务问题，还是功能缺失描述？
+- 这个问题不解决，会产生什么业务后果？PRD 有没有说清楚？
+
+**问题-方案对齐**：
+- 逻辑链：做了 [方案] → 会导致 [中间结果] → 能解决 [背景问题]
+- 逻辑链是否成立？有无跳跃？
+
+**总体判断**：
+- ✅ 建议推进 / ⚠️ 需补充后推进 / ❌ 暂不建议推进
+
+---
+
+然后按以下维度输出 10-20 条问题：
 
 ## 👨‍💻 开发视角（边界/异常/性能）
-- **[高/中/低]** [具体问题] → 补充位置：第X节
+- **[高/中/低]** [问题] → 第X节
 
-## 🧪 测试视角（验收/极端场景）
-- **[高/中/低]** [具体问题] → 补充位置：第X节
+## 🧪 测试视角（验收口径/极端场景）
+- **[高/中/低]** [场景X是否走通？] → 第X节
 
-## 📊 数据视角（指标/归因/口径）
-- **[高/中/低]** [具体问题] → 补充位置：第X节
+## 📊 数据视角（指标归因/实验设计）
+- **[高/中/低]** [指标X能否归因到这个方案？] → 第X节
+- **[高/中/低]** [是否有验证路径/实验设计？] → 第X节
 
-## ⚖️ 合规视角（数据/授权/留存）
-- **[高/中/低]** [具体问题] → 补充位置：第X节
+## 👤 双视角检查（用户视角+平台视角）
+- **[高/中/低]** [用户真实动机是什么？方案有没有满足？] → 第X节
+- **[高/中/低]** [引导强度是否匹配用户获得的价值？] → 第X节
+
+## ⚖️ 合规/影响面
+- **[高/中/低]** [对存量用户/数据的影响是否评估？] → 第X节
 
 ---
 
 ## 📌 决策记录模板
 | 决策事项 | 结论 | 负责人 | 截止时间 |
 |---|---|---|---|
-| [需要明确的决策] | | | |
 
 ## ⚡ 争议清单
 | 争议事项 | 甲方立场 | 乙方立场 | 拍板人 | 截止时间 |
 |---|---|---|---|---|
-| [有分歧未解决的] | | | | |
 
 ## 🔒 口径冻结建议
-- [指标/概念]：[精确定义，评审通过后不再修改]`
-  },
-  { id:5, icon:'🎫', iconClass:'icon-5', tagClass:'tag-5', barClass:'bar-5',
-    tag:'AGENT 05 · Generator', title:'工单拆解员',
-    desc:'把最终 PRD 拆成可直接认领的开发工单。粒度 1人·1-3天，超过5天必须继续拆分。',
-    inputLabel:'粘贴最终 PRD + 里程碑',
-    placeholder:'粘贴评审完毕的 PRD，并附上里程碑节点，例如：\n里程碑：W1-数据跑批 W2-站内信上线 W3-Push上线 W4-验收',
-    inputItems:['最终 PRD（已评审）','里程碑节点'],
-    outputItems:['前端/后端/数据/配置工单','验收标准','依赖关系','排期建议'],
-    nextLabel: null,
-    system:`你是 Ticket Generator（工单拆解员）。把 PRD 拆成开发可直接认领的工单。粒度以"1人·1-3天"为佳，超过5天的任务必须继续拆分。
+- [指标/概念]：[精确定义，评审通过后不再修改]`,
+
+  5: `你是 Ticket Generator（工单拆解员）。把 PRD 拆成开发可直接认领的工单。
+
+粒度以"1人·1-3天"为佳，超过5天必须继续拆分。埋点工单必须优先排期，先于功能上线完成。
+
+## ⚠️ 前置风险提示（必须优先处理）
+[其他工单开始前的前置条件：埋点/白名单/配置开关/权限申请等]
 
 ## 🖥️ 前端工单
 ### [FE-001] 工单标题
 - **验收标准**：[具体可测，不能写"功能正常"]
 - **工作量**：X 人天
-- **依赖**：[前置条件]
+- **依赖**：[前置工单 ID 或条件]
 
 ## ⚙️ 后端工单
 ### [BE-001] 工单标题
@@ -457,73 +543,185 @@ const AGENTS = [
 - **依赖**：
 
 ## 📊 数据工单
-### [DA-001] ...
+### [DA-001] 埋点方案
+- **验收标准**：（上报格式、字段定义、验证方式）
+- **工作量**：
+- **⚠️ 注意**：必须先于功能上线完成
 
 ## ⚙️ 配置/运营工单
 ### [OPS-001] ...
 
 ---
 
-## 🔗 依赖关系
-[说明哪些工单必须先完成，关键路径]
-
-## ⚠️ 风险提示
-[需要提前处理的前置条件：埋点/白名单/开关等]
+## 🔗 关键路径
+[哪些工单是关键路径，延误会影响整体排期]
 
 ## 📅 排期建议
-- W1：
-- W2：
-- W3：`
+| 周次 | 工单 | 负责人 |
+|---|---|---|
+| W1 | | |`
+};
+
+// ── AGENT CONFIGS ──
+const AGENTS = [
+  { id:1, icon:'📼', iconClass:'icon-1', tagClass:'tag-1', barClass:'bar-1',
+    tag:'STEP 01 · Recorder', title:'事实整理员',
+    desc:'只做一件事：把"发生了什么"说清楚。不加推断，每条事实必须有出处。如发现"功能视角"表述会主动标注。',
+    insight:'<strong>注意</strong>：如会议中出现"竞品有了我们也做"、"加个功能"等表述，会在待确认点里特别标出——这是功能视角，不是业务问题。',
+    inputLabel:'粘贴会议记录 / 聊天记录 / 纪要',
+    placeholder:'[09:05] 张三：我们先做用户分层，把沉默用户挑出来激活\n[09:07] 李四：数据怎么来？目前埋点没全跑通\n[09:09] 王五：月底前必须有初版，董事会要看\n[09:12] 张三：先用离线T+1数据，实时的Q2再说',
+    inputItems:['会议录音转写文字','群聊 / IM 记录','飞书 / Notion 纪要'],
+    outputItems:['事实清单（含出处）','待确认点（含功能视角预警）','决策与责任人'],
+    nextLabel:'继续 → 意图翻译'
+  },
+  { id:2, icon:'🔍', iconClass:'icon-2', tagClass:'tag-2', barClass:'bar-2',
+    tag:'STEP 02 · Translator', title:'意图翻译官',
+    desc:'把业务话术翻译成产品语言。先做第一性检验——如果背景是功能视角，会明确指出并重新定义业务问题。',
+    insight:'<strong>第一性检验</strong>：目标不是功能描述，是可量化+有截止时间的业务结果。逻辑链必须成立：做了X→导致Y→解决问题Z。',
+    inputLabel:'粘贴事实清单（或直接描述业务背景）',
+    placeholder:'粘贴上一步的输出，或直接描述业务背景、痛点、期望结果……',
+    inputItems:['Step01 事实清单','或直接描述业务背景'],
+    outputItems:['背景诊断（如有功能视角问题）','可验证目标（OKR格式）','约束条件','关键假设','优先级 P0/P1/P2'],
+    nextLabel:'继续 → PRD 写手'
+  },
+  { id:3, icon:'📝', iconClass:'icon-3', tagClass:'tag-3', barClass:'bar-3',
+    tag:'STEP 03 · Writer', title:'PRD 结构化写手',
+    desc:'输出结构完整的 PRD 初稿。包含双视角（用户视角+平台视角）、场景穷举、可证伪指标。写完后自动自检。',
+    insight:'<strong>双视角</strong>：用户视角（真实动机）+ 平台视角（引导强度是否匹配用户获得的价值）。场景必须穷举，不只写 happy path。',
+    inputLabel:'粘贴目标与约束（或 Step02 的输出）',
+    placeholder:'粘贴上一步的翻译结果，或直接描述产品目标、约束条件……',
+    inputItems:['可验证目标','约束条件','优先级建议'],
+    outputItems:['背景与问题定义','目标与范围+双视角','场景穷举表','方案说明','可证伪指标','风险与灰度'],
+    nextLabel:'继续 → 评审挑战'
+  },
+  { id:4, icon:'🎯', iconClass:'icon-4', tagClass:'tag-4', barClass:'bar-4',
+    tag:'STEP 04 · Reviewer', title:'评审挑战模拟器',
+    desc:'先做第一性判断（问题-方案是否对齐），再从五个视角挑战 PRD。每条问题指向具体章节，含风险等级。',
+    insight:'<strong>第一性判断先行</strong>：逻辑链不成立的 PRD，细节补再多也是白费。先确认"问题-方案对齐"，再进入维度评审。',
+    inputLabel:'粘贴 PRD 草稿',
+    placeholder:'粘贴上一步生成的 PRD 初稿……',
+    inputItems:['PRD 初稿（Step03 输出）'],
+    outputItems:['第一性判断（推进/补充/不推进）','10-20条评审问题+风险等级','双视角检查','决策记录+争议清单','口径冻结建议'],
+    nextLabel:'继续 → 工单拆解'
+  },
+  { id:5, icon:'🎫', iconClass:'icon-5', tagClass:'tag-5', barClass:'bar-5',
+    tag:'STEP 05 · Generator', title:'工单拆解员',
+    desc:'把最终 PRD 拆成可直接认领的开发工单。粒度 1人·1-3天，埋点工单必须优先排期。',
+    insight:'<strong>埋点优先</strong>：DA 工单必须先于功能上线完成，否则上线后无法验证指标，方案无法被证伪。',
+    inputLabel:'粘贴最终 PRD + 里程碑',
+    placeholder:'粘贴评审完毕的 PRD，并附上里程碑：\n里程碑：W1-数据跑批 W2-站内信上线 W3-Push上线 W4-验收',
+    inputItems:['最终 PRD（已评审）','里程碑节点'],
+    outputItems:['前置风险提示','前端/后端/数据/配置工单','验收标准','关键路径','排期建议'],
+    nextLabel: null
   }
 ];
 
 const SAMPLES = {
-  1:`[09:05] PM张三：我们先做用户分层，把沉默用户挑出来做激活\n[09:07] 研发李四：数据怎么来？目前行为埋点没全跑通，DAU统计是准的\n[09:09] CEO王五：这个功能月底前必须有初版，董事会要看\n[09:12] PM张三：我们先用离线T+1数据，实时的Q2再说\n[09:15] 数据周六：分层维度怎么定？7天不活跃算沉默？还是30天？\n[09:17] PM张三：先按30天不登录，后续可以调\n[09:20] 研发李四：推送用什么？短信费钱，Push权限率低\n[09:23] PM张三：先用站内信+Push，短信不用\n[09:25] CEO王五：好，月底验收，李四你给个排期`,
-  2:`## ✅ 事实清单\n- PM张三：目标是激活30天未登录沉默用户，先做分层\n- 研发李四：行为埋点未全跑通，DAU数据可用；T+1离线数据可用\n- CEO王五：月底前必须有初版，董事会验收\n- PM张三：触达渠道选站内信+Push，排除短信（成本）\n\n## ❓ 待确认点\n- 沉默用户是否包含"注册未激活"用户\n- 激活成功的定义（登录？付费？）\n- Push权限率偏低时的兜底方案\n\n## 👤 决策与责任人\n| 决策事项 | 责任人 | 截止时间 |\n|---|---|---|\n| 初版上线 | 李四（研发） | 月底 |\n| 方案拍板 | 王五（CEO） | 已决 |`,
+  1:`[09:05] PM张三：我们先做用户分层，把沉默用户挑出来做激活\n[09:07] 研发李四：数据怎么来？目前行为埋点没全跑通，DAU统计是准的\n[09:09] CEO王五：这个功能月底前必须有初版，董事会要看\n[09:12] PM张三：我们先用离线T+1数据，实时的Q2再说\n[09:15] 数据周六：分层维度怎么定？7天不活跃算沉默？还是30天？\n[09:17] PM张三：先按30天不登录，后续可以调\n[09:20] 研发李四：推送用什么？短信费钱，Push权限率低\n[09:23] PM张三：先用站内信+Push，短信不用。对了，竞品都有这个功能了\n[09:25] CEO王五：好，月底验收，李四你给个排期`,
+  2:`## ✅ 事实清单\n- PM张三：目标激活30天未登录沉默用户，先做分层\n- 研发李四：行为埋点未全跑通，DAU数据可用；T+1离线数据可用\n- CEO王五：月底前必须有初版，董事会验收\n- PM张三：触达渠道选站内信+Push，排除短信（成本）\n\n## ❓ 待确认点\n- 沉默用户是否包含"注册未激活"用户？\n- 激活成功定义：登录？还是付费？\n- ⚠️ "竞品都有这个功能了"——这是功能对标视角，需要挖掘真正的业务问题\n\n## 👤 决策与责任人\n| 决策事项 | 责任人 | 截止时间 |\n|---|---|---|\n| 初版上线 | 李四（研发） | 月底 |\n| 方案拍板 | 王五（CEO） | 已决 |`,
   3:`## 🎯 可验证目标\n将30天沉默用户7日唤回率从8%提升至15%（+7pp），Q1末（3月31日）验收\n\n## 🚧 约束条件\n- 时间约束：月底上初版，Q1末正式验收\n- 资源约束：研发2人·2周\n- 数据约束：仅支持T+1离线，无实时个性化\n- 合规约束：Push需用户已授权\n\n## 💡 关键假设（需验证）\n- Push权限率≥40% → 验证方式：查现有Push数据 → 负责人：运营\n- 30天定义覆盖主要流失场景 → 验证方式：查用户流失分布 → 负责人：数据\n\n## 📊 优先级建议\n- P0：用户分层规则 + 站内信触达\n- P1：Push触达 + 频控\n- P2：个性化文案（Q2）`,
-  4:`## 一、背景与问题定义\n- 业务背景：月活用户中30天未登录占比35%，约120万/月\n- 现状：唤回率仅8%，行业均值15%，缺乏主动触达机制\n- 为什么现在做：Q1 OKR明确，董事会验收节点\n\n## 二、目标与范围\n目标：30天唤回率8%→15%，Q1末验收\n| 范围 | 内容 |\n|---|---|\n| ✅ In Scope | 用户分层规则、站内信、Push |\n| ❌ Out Scope | 短信、实时个性化 |\n\n## 三、核心流程\n主流程：T+1跑批 → 用户分层 → 触达决策 → 发送 → 回流统计\n异常：Push权限未开 → 降级站内信\n\n## 四、方案说明\n- 分层维度：连续30天未登录\n- 频控：自然周内同一用户最多1次\n- 文案：统一模板，Q2做个性化\n\n## 五、埋点与指标\n| 指标 | 定义 | 计算 | 更新 |\n|---|---|---|---|\n| 唤回率 | 触达后7日内登录 | 登录数/触达量 | T+1 |\n\n## 六、风险与灰度\n- Push权限率预估40%，站内信作保底\n- 灰度：先10%，观察3天，无异常全量\n- 回滚：关闭触达开关即可`,
-  5:`（最终PRD同上，已根据评审补充边界条件）\n\n决策记录：\n- 唤回率定义：触达后7天内首次登录 ✅已冻结\n- 频控规则：自然周内最多1次 ✅已冻结\n- Push权限率<30%时降级为纯站内信 ✅已决\n\n里程碑：\n- W1：数据跑批脚本 + 分层规则上线\n- W2：站内信发送能力接入\n- W3：Push接入 + 灰度验证\n- W4：全量 + 数据验收`
+  4:`（PRD 初稿）\n## 一、背景与问题定义\n- 业务背景：月活用户中30天未登录占比35%，约120万/月\n- 现状：唤回率8%，行业均值15%，缺乏主动触达\n- 为什么现在做：Q1 OKR要求，董事会验收节点\n\n## 二、目标与范围\n目标：唤回率8%→15%，Q1末验收\n用户视角：30天未登录用户，流失原因未探明\n平台视角：通过触达引导用户回流，引导强度中等\n| 范围 | 内容 |\n|---|---|\n| ✅ In Scope | 分层规则、站内信、Push |\n| ❌ Out Scope | 短信、实时个性化 |\n\n## 三、核心流程\n主流程：T+1跑批→用户分层→触达→回流统计\n\n## 四、方案说明\n频控：7天内同一用户最多1次\n\n## 五、埋点与指标\n唤回率 = 触达后7日内登录/触达量\n\n## 六、风险\n Push权限率预估40%，灰度先10%用户`,
+  5:`最终PRD（已评审）\n\n决策记录：\n- 唤回率定义：触达后7天内首次登录 ✅已冻结\n- 频控：自然周内最多1次 ✅已冻结\n- Push权限率<30%降级为纯站内信 ✅已决\n\n里程碑：\n- W1：数据跑批+分层规则上线\n- W2：站内信发送接入\n- W3：Push接入+灰度\n- W4：全量+数据验收`
 };
 
-const API_URL = 'https://open.bigmodel.cn/api/paas/v4/chat/completions';
+// ── STATE ──
 let currentStep = 1;
 const outputs = {};
 
+// ── MODEL INIT ──
 window.onload = () => {
-  const k = localStorage.getItem('glm_key');
-  if (k) document.getElementById('apikey').value = k;
+  onProviderChange();
+  const savedKey = localStorage.getItem('prd_apikey_' + getProvider());
+  if (savedKey) document.getElementById('apikey').value = savedKey;
   renderStep(1);
 };
 
-function saveKey() { localStorage.setItem('glm_key', document.getElementById('apikey').value); }
+function getProvider() { return document.getElementById('provider').value; }
+function getProviderConfig() { return PROVIDERS[getProvider()]; }
+
+function onProviderChange() {
+  const cfg = getProviderConfig();
+  const sel = document.getElementById('model-select');
+  sel.innerHTML = cfg.models.map(m => `<option value="${m}">${m}</option>`).join('');
+  document.getElementById('key-hint').innerHTML =
+    `<a href="${cfg.keyLink}" target="_blank">申请 ${cfg.name} API Key →</a><br>${cfg.keyHint}`;
+  const saved = localStorage.getItem('prd_apikey_' + getProvider());
+  document.getElementById('apikey').value = saved || '';
+  document.getElementById('conn-dot').className = 'dot';
+  document.getElementById('conn-text').textContent = '未验证';
+}
+
+function saveKey() {
+  localStorage.setItem('prd_apikey_' + getProvider(), document.getElementById('apikey').value);
+}
 
 async function testConn() {
   const key = document.getElementById('apikey').value.trim();
   if (!key) { toast('请先填写 API Key'); return; }
   document.getElementById('conn-text').textContent = '验证中…';
   try {
-    const r = await fetch(API_URL, {
-      method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':`Bearer ${key}`},
-      body:JSON.stringify({model:document.getElementById('model').value,max_tokens:5,messages:[{role:'user',content:'hi'}]})
-    });
-    if (r.ok) {
-      document.getElementById('conn-dot').className='dot ok';
-      document.getElementById('conn-text').textContent='连接正常';
-      toast('✓ API Key 验证通过');
-    } else {
-      const e=await r.json(); throw new Error(e.error?.message||r.status);
-    }
+    await callAPI('hi', 5);
+    document.getElementById('conn-dot').className = 'dot ok';
+    document.getElementById('conn-text').textContent = '连接正常';
+    toast('✓ 连接正常');
   } catch(e) {
-    document.getElementById('conn-dot').className='dot err';
-    document.getElementById('conn-text').textContent='连接失败';
-    toast('连接失败：'+e.message);
+    document.getElementById('conn-dot').className = 'dot err';
+    document.getElementById('conn-text').textContent = '连接失败';
+    toast('失败：' + e.message);
   }
 }
 
+// ── API CALLER (multi-format) ──
+async function callAPI(userMsg, maxTokens = 2000, systemPrompt = '') {
+  const key = document.getElementById('apikey').value.trim();
+  const cfg = getProviderConfig();
+  const model = document.getElementById('model-select').value;
+
+  if (cfg.format === 'gemini') {
+    // Gemini REST format
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
+    const body = {
+      contents: [{ role:'user', parts:[{ text: systemPrompt ? systemPrompt + '\n\n' + userMsg : userMsg }] }],
+      generationConfig: { maxOutputTokens: maxTokens }
+    };
+    const r = await fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error?.message || r.status);
+    return d.candidates?.[0]?.content?.parts?.[0]?.text || '（无输出）';
+  }
+
+  if (cfg.format === 'claude') {
+    // Anthropic format
+    const body = { model, max_tokens: maxTokens, messages:[{role:'user',content:userMsg}] };
+    if (systemPrompt) body.system = systemPrompt;
+    const r = await fetch(cfg.url, {
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01'},
+      body:JSON.stringify(body)
+    });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error?.message || r.status);
+    return d.content?.[0]?.text || '（无输出）';
+  }
+
+  // OpenAI-compatible (GLM, Qwen, Kimi, Doubao, MiniMax, OpenAI)
+  const messages = [];
+  if (systemPrompt) messages.push({role:'system', content: systemPrompt});
+  messages.push({role:'user', content: userMsg});
+  const r = await fetch(cfg.url, {
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':`Bearer ${key}`},
+    body:JSON.stringify({ model, max_tokens: maxTokens, messages })
+  });
+  const d = await r.json();
+  if (!r.ok) throw new Error(d.error?.message || r.status);
+  return d.choices?.[0]?.message?.content || '（无输出）';
+}
+
+// ── RENDER ──
 function renderStep(n) {
   const a = AGENTS[n-1];
-  const prev = outputs[n]||'';
+  const prev = outputs[n] || '';
   document.getElementById('content').innerHTML = `
     <div class="card">
       <div class="card-bar ${a.barClass}"></div>
@@ -546,12 +744,13 @@ function renderStep(n) {
           <ul class="io-items">${a.outputItems.map(i=>`<li>${i}</li>`).join('')}</ul>
         </div>
       </div>
+      ${a.insight ? `<div class="insight-box">💡 ${a.insight}</div>` : ''}
       <div class="workspace">
         <div class="ws-label">
           <span>${a.inputLabel}</span>
           <button class="btn-ghost" style="height:26px;padding:0 10px;font-size:11px" onclick="loadSample(${n})">加载示例</button>
         </div>
-        <textarea id="ta-${n}" placeholder="${a.placeholder}">${n>1&&!prev?(outputs[n-1]||'').substring(0,2000):''}</textarea>
+        <textarea id="ta-${n}" placeholder="${a.placeholder}">${n>1&&!prev?(outputs[n-1]||'').substring(0,2500):''}</textarea>
         <div class="actions">
           <button class="btn-run" id="btn-run-${n}" onclick="runAgent(${n})">▶ 运行</button>
           <button class="btn-ghost" onclick="clearStep(${n})">清除</button>
@@ -582,84 +781,90 @@ function switchStep(n) {
   });
   document.querySelector(`.nav-item[data-step="${n}"]`).classList.add('active');
   for (let i=1;i<=5;i++) {
-    const seg=document.getElementById(`seg-${i}`);
-    seg.className='p-seg'+(outputs[i]&&i!==n?' done':i===n?' active':'');
+    const seg = document.getElementById(`seg-${i}`);
+    seg.className = 'p-seg' + (outputs[i]&&i!==n?' done':i===n?' active':'');
   }
-  const a=AGENTS[n-1];
-  document.getElementById('topbar-title').textContent=`Agent 0${n} — ${a.tag.split('· ')[1]}`;
-  document.getElementById('topbar-sub').textContent=a.title;
+  const a = AGENTS[n-1];
+  document.getElementById('topbar-title').textContent = `Step 0${n} — ${a.tag.split('· ')[1]}`;
+  document.getElementById('topbar-sub').textContent = a.title;
   renderStep(n);
 }
 
 async function runAgent(n) {
-  const key=document.getElementById('apikey').value.trim();
-  if(!key){toast('请先填写 API Key');return;}
-  const input=document.getElementById(`ta-${n}`).value.trim();
-  if(!input){toast('请先填写输入内容');return;}
-  const model=document.getElementById('model').value;
-  const agent=AGENTS[n-1];
-  document.getElementById(`btn-run-${n}`).disabled=true;
+  const key = document.getElementById('apikey').value.trim();
+  if (!key) { toast('请先填写 API Key'); return; }
+  const input = document.getElementById(`ta-${n}`).value.trim();
+  if (!input) { toast('请先填写输入内容'); return; }
+
+  document.getElementById(`btn-run-${n}`).disabled = true;
   document.getElementById(`loading-${n}`).classList.add('visible');
   document.getElementById(`out-wrap-${n}`).classList.remove('visible');
-  const msgs=['正在分析输入内容…','整理结构中…','生成结果中…','即将完成…'];
-  let mi=0;
-  const timer=setInterval(()=>{const el=document.getElementById(`loading-txt-${n}`);if(el)el.textContent=msgs[mi++%msgs.length];},2000);
+
+  const msgs = ['正在分析输入…','整理结构中…','生成结果中…','校验逻辑…'];
+  let mi = 0;
+  const timer = setInterval(() => {
+    const el = document.getElementById(`loading-txt-${n}`);
+    if (el) el.textContent = msgs[mi++ % msgs.length];
+  }, 2200);
+
   try {
-    const resp=await fetch(API_URL,{
-      method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':`Bearer ${key}`},
-      body:JSON.stringify({model,max_tokens:2000,messages:[{role:'system',content:agent.system},{role:'user',content:input}]})
-    });
-    const data=await resp.json();
-    if(!resp.ok) throw new Error(data.error?.message||`HTTP ${resp.status}`);
-    const text=data.choices?.[0]?.message?.content||'（无输出）';
-    outputs[n]=text;
+    const text = await callAPI(input, 2000, SYSTEM_PROMPTS[n]);
+    outputs[n] = text;
     document.getElementById(`out-wrap-${n}`).classList.add('visible');
-    document.getElementById(`out-${n}`).innerHTML=renderMd(text);
+    document.getElementById(`out-${n}`).innerHTML = renderMd(text);
     document.getElementById(`btn-next-${n}`)?.classList.add('visible');
     document.querySelector(`.nav-item[data-step="${n}"]`).classList.add('done');
-    document.getElementById(`seg-${n}`).className='p-seg done';
+    document.getElementById(`seg-${n}`).className = 'p-seg done';
     toast('✓ 完成');
   } catch(e) {
     document.getElementById(`out-wrap-${n}`).classList.add('visible');
-    document.getElementById(`out-${n}`).innerHTML=`<span style="color:var(--red)">错误：${e.message}</span>`;
-    toast('请求失败：'+e.message);
+    document.getElementById(`out-${n}`).innerHTML = `<span style="color:var(--red)">错误：${e.message}<br><br>常见原因：API Key 不正确 / 模型名有误 / 需要代理（OpenAI/Claude/Gemini）</span>`;
+    toast('请求失败');
   } finally {
     clearInterval(timer);
     document.getElementById(`loading-${n}`).classList.remove('visible');
-    const btn=document.getElementById(`btn-run-${n}`);
-    if(btn) btn.disabled=false;
+    const btn = document.getElementById(`btn-run-${n}`);
+    if (btn) btn.disabled = false;
   }
 }
 
 function goNext(n) { switchStep(n+1); }
+
 function clearStep(n) {
-  document.getElementById(`ta-${n}`).value='';
+  document.getElementById(`ta-${n}`).value = '';
   document.getElementById(`out-wrap-${n}`).classList.remove('visible');
   document.getElementById(`btn-next-${n}`)?.classList.remove('visible');
   delete outputs[n];
 }
-function loadSample(n) { document.getElementById(`ta-${n}`).value=SAMPLES[n]||''; }
-function copyOut(n) { navigator.clipboard.writeText(outputs[n]||'').then(()=>toast('已复制到剪贴板')); }
 
-async function runAll() {
-  const btn=document.getElementById('run-all-btn');
-  btn.textContent='⏳ 运行中…'; btn.disabled=true;
-  for(let i=1;i<=5;i++){
-    switchStep(i);
-    if(!document.getElementById(`ta-${i}`).value.trim()) loadSample(i);
-    await runAgent(i);
-    await new Promise(r=>setTimeout(r,600));
-  }
-  btn.textContent='✅ 全流程完成';
-  setTimeout(()=>{btn.textContent='▶ 一键运行全流程';btn.disabled=false;},3000);
+function loadSample(n) {
+  document.getElementById(`ta-${n}`).value = SAMPLES[n] || '';
 }
 
+function copyOut(n) {
+  navigator.clipboard.writeText(outputs[n] || '').then(() => toast('已复制到剪贴板'));
+}
+
+async function runAll() {
+  const btn = document.getElementById('run-all-btn');
+  btn.textContent = '⏳ 运行中…'; btn.disabled = true;
+  for (let i=1; i<=5; i++) {
+    switchStep(i);
+    if (!document.getElementById(`ta-${i}`).value.trim()) loadSample(i);
+    await runAgent(i);
+    await new Promise(r => setTimeout(r, 700));
+  }
+  btn.textContent = '✅ 全流程完成';
+  setTimeout(() => { btn.textContent = '▶ 一键运行全流程'; btn.disabled = false; }, 3000);
+}
+
+// ── MARKDOWN ──
 function renderMd(t) {
   return t
     .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
     .replace(/^## (.+)$/gm,'<h2>$1</h2>')
     .replace(/^### (.+)$/gm,'<h3>$1</h3>')
+    .replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>')
     .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
     .replace(/`([^`]+)`/g,'<code>$1</code>')
     .replace(/^\| (.+)$/gm,(_,row)=>{
@@ -668,6 +873,8 @@ function renderMd(t) {
       return'<tr>'+cells.map(c=>`<td>${c}</td>`).join('')+'</tr>';
     })
     .replace(/(<tr>[\s\S]*?<\/tr>\n?)+/g,m=>`<table>${m}</table>`)
+    .replace(/^- \[ \] (.+)$/gm,'<li>☐ $1</li>')
+    .replace(/^- \[x\] (.+)$/gm,'<li>☑ $1</li>')
     .replace(/^- (.+)$/gm,'<li>$1</li>')
     .replace(/(<li>[\s\S]*?<\/li>\n?)+/g,m=>`<ul>${m}</ul>`)
     .replace(/^---$/gm,'<hr>')
@@ -676,9 +883,9 @@ function renderMd(t) {
 }
 
 function toast(msg) {
-  const el=document.getElementById('toast');
-  el.textContent=msg; el.classList.add('show');
-  setTimeout(()=>el.classList.remove('show'),2200);
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2200);
 }
 </script>
 </body>
